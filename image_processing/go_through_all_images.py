@@ -48,5 +48,5 @@ def browse_images(preprocessed_folder):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    preprocessed_folder = "/Users/benporho/thesis_data/Resized"
+    preprocessed_folder = "/Users/benporho/thesis_data/Randomly Rotated Original Images with Augmentation"
     browse_images(preprocessed_folder)

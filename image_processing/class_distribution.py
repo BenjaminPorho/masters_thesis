@@ -36,7 +36,7 @@ def display_distribution(distribution):
         print()
 
 if __name__ == "__main__":
-    preprocessed_folder = "/Users/benporho/thesis_data/Preprocessed"  # Change this if your folder is named differently
+    preprocessed_folder = "/Users/benporho/thesis_data/Randomly Rotated Original Images with Augmentation"  # Change this if your folder is named differently
 
     # Count images and display the distribution
     distribution = count_images(preprocessed_folder)
