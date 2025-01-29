@@ -2,8 +2,8 @@ import os
 from pdf2image import convert_from_path
 
 # Fixed input and output directories
-INPUT_FOLDER = "/Users/benporho/thesis_data/Original Thermal PDFs/mouse1"
-OUTPUT_FOLDER = "/Users/benporho/thesis_data/Converted Thermal Images/mouse1"
+INPUT_FOLDER = "/Users/benporho/thesis_data/Original Thermal PDFs/mouse4"
+OUTPUT_FOLDER = "/Users/benporho/thesis_data/Converted Thermal Images/mouse4"
 
 def convert_pdfs_to_jpegs(input_folder, output_folder):
     # Ensure output folder exists
