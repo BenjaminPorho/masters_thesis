@@ -43,8 +43,9 @@ def save_cropped_image(image, start_x, start_y, end_x, end_y, folder_path, base_
     print(f"Saved image as {filename}")
 
 def mouse_callback(event, x, y, flags, param):
-    global treated_clicked, control_clicked, cropping, crop_start, crop_end, current_image
-    image, output_folder, day, mouse, filename = param
+    global treated_clicked, control_clicked, cropping, crop_start, crop_end, current_day
+    image, output_folder, mouse, filename = param  # Removed day from parameters
+    day = current_day  # Use the updated day value
 
     if event == cv2.EVENT_LBUTTONDOWN:
         cropping = True
@@ -102,7 +103,7 @@ def process_images(input_folder, output_folder):
         treated_clicked = False
         control_clicked = False
 
-        cv2.setMouseCallback("Image", mouse_callback, param=(current_image, output_folder, current_day, mouse, filename))
+        cv2.setMouseCallback("Image", mouse_callback, param=(current_image, output_folder, mouse, filename))
 
         while True:
             key = cv2.waitKey(0) & 0xFF
@@ -140,7 +141,7 @@ def process_images(input_folder, output_folder):
         cv2.destroyWindow("Image")
 
 if __name__ == "__main__":
-    input_folder = "/Users/benporho/thesis_data/Converted Thermal Images/mouse4"
+    input_folder = "/Users/benporho/thesis_data/Converted Thermal Images/mouse10"
     output_folder = "/Users/benporho/thesis_data/Preprocessed Thermal Images"
 
     process_images(input_folder, output_folder)
