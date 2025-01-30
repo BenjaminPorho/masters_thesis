@@ -141,7 +141,7 @@ def process_images(input_folder, output_folder):
         cv2.destroyWindow("Image")
 
 if __name__ == "__main__":
-    input_folder = "/Users/benporho/thesis_data/Converted Thermal Images/mouse10"
+    input_folder = "/Users/benporho/thesis_data/Converted Thermal Images/mouse4"
     output_folder = "/Users/benporho/thesis_data/Preprocessed Thermal Images"
 
     process_images(input_folder, output_folder)
