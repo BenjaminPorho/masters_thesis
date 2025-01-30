@@ -62,7 +62,7 @@ def resize_images(preprocessed_folder, output_folder, target_size=(224, 224)):
                 print(f"Saved resized image to: {output_path}")
 
 if __name__ == "__main__":
-    preprocessed_folder = "/Users/benporho/thesis_data/Preprocessed"
-    output_folder = "/Users/benporho/thesis_data/Resized"
+    preprocessed_folder = "/Users/benporho/thesis_data/Augmented Thermal Images/day2/mouse8/control"
+    output_folder = "/Users/benporho/thesis_data/control"
 
     resize_images(preprocessed_folder, output_folder)
