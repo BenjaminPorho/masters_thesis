@@ -2,11 +2,13 @@ import pandas as pd
 import os
 import re
 
-# File path for the augmented dataset
+# File paths
 file_path = "/Users/benporho/thesis_data/final_tabular_data.csv"
+wound_sizes_path = "/Users/benporho/thesis_data/wound_sizes_mm2.csv"
 
-# Load the dataset
+# Load the datasets
 df = pd.read_csv(file_path)
+df_wound_sizes = pd.read_csv(wound_sizes_path)
 
 # Define treatment type mapping
 TREATMENT_MAPPING = {
@@ -70,6 +72,14 @@ for index, row in df.iterrows():
     expected_treatment = TREATMENT_MAPPING.get(mouse_id, "Unknown")
     if wound_type == "treated" and row["Treatment_Type"] != expected_treatment:
         errors.append(f"Row {index}: Treatment_Type mismatch for Mouse_ID {mouse_id}")
+    
+    # Validate Wound_Size (mm^2) against original wound sizes
+    wound_size_column = f"Day_{imaging_day}_Right" if wound_type == "treated" else f"Day_{imaging_day}_Left"
+    if wound_size_column in df_wound_sizes.columns:
+        original_wound_size = df_wound_sizes.loc[df_wound_sizes["Mouse_ID"] == mouse_id, wound_size_column].values
+        if len(original_wound_size) > 0:
+            if abs(row["Wound_Size (mm^2)"] - original_wound_size[0]) > 0.6:
+                errors.append(f"Row {index}: Wound_Size (mm^2) out of range for Mouse_ID {mouse_id}, Imaging_Day {imaging_day}, Wound_Type {wound_type}. Found: {row['Wound_Size (mm^2)']}, Expected: {original_wound_size[0]}")
 
 # Output validation results
 if errors:
